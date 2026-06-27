@@ -1,5 +1,5 @@
 ---
-title: "미·이란, 종이 위의 평화 — 해협 위의 공백, 집행 규칙 없는 휴전의 한계"
+title: "미·이란, 종전 양해각서는 바닷물에 쉽게 젖었다 — 호르무즈 휴전의 한계"
 date: 2026-06-27
 sector: politics-society
 slug: hormuz-enforcement-gap
