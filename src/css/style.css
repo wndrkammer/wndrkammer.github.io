@@ -83,9 +83,15 @@ strong, b { font-weight: 400; }   /* 볼드 사용 안 함 */
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   color: var(--ink-soft);
-  margin-left: 1rem;
-  padding-left: 1rem;
-  border-left: 1px solid var(--hairline-2);
+}
+.wordmark .sub::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 0.95em;
+  margin: 0 0.8rem;            /* | 좌우에 똑같은 간격 */
+  background: var(--hairline-2);
+  vertical-align: middle;
 }
 .nav { display: flex; gap: clamp(1.1rem, 3vw, 2rem); }
 .nav a {
