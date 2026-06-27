@@ -1,5 +1,5 @@
 ---
-title: "비어 있던 것은 해협이 아니라 집행 규칙이었다"
+title: "미·이란, 종이 위의 평화 — 해협 위의 공백, 집행 규칙 없는 휴전의 한계"
 date: 2026-06-27
 sector: politics-society
 slug: hormuz-enforcement-gap
