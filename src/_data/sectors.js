@@ -25,4 +25,9 @@ module.exports = [
     name: "플랫폼과 소비",
     desc: "수수료와 점유율, 트래픽이 돈으로 바뀌는 구조.",
   },
+  {
+    slug: "politics-society",
+    name: "정치와 사회",
+    desc: "선언과 합의 아래에서 실제로 작동하는 제도와 집행, 권력의 구조.",
+  },
 ];
