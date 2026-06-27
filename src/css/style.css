@@ -87,15 +87,16 @@ strong, b { font-weight: 400; }   /* 볼드 사용 안 함 */
   padding-left: 0.7rem;
   border-left: 1px solid var(--hairline-2);
 }
-.nav { display: flex; gap: clamp(1rem, 3vw, 1.9rem); }
+.nav { display: flex; gap: clamp(1.1rem, 3vw, 2rem); }
 .nav a {
-  font-size: 0.95rem;
-  color: var(--ink-soft);
-  padding-bottom: 2px;
-  border-bottom: 1px solid transparent;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--hairline-2);
   transition: color 0.15s, border-color 0.15s;
 }
-.nav a:hover { color: var(--ink); border-color: var(--ink); }
+.nav a:hover { color: var(--accent); border-color: var(--accent); }
 
 /* 발행 정보 한 줄 */
 .standfirst { border-bottom: 1px solid var(--hairline); }
