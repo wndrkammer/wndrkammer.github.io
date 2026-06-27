@@ -1,0 +1,50 @@
+---
+layout: base.njk
+---
+<article class="article">
+  <div class="container">
+    <header class="article-head">
+      <p class="kicker">{{ sector | sectorName }}</p>
+      <h1 class="article-title">{{ title }}</h1>
+      <p class="article-meta">{{ site.author }} · {{ site.authorTitle }} · {{ date | ymd }}</p>
+    </header>
+
+    <div class="prose">
+      {{ content | safe }}
+
+      {% ad %}
+
+      <a class="back-link" href="/#index">← 분석 목록으로</a>
+    </div>
+
+    {%- set sameSector = collections.posts | bySector(sector) | not(page.url) %}
+    {%- set related = (sameSector if sameSector.length else (collections.posts | not(page.url))) | limit(3) %}
+    {% if related.length %}
+    <aside class="related">
+      <p class="section-label">{{ "같은 섹터의 다른 분석" if sameSector.length else "더 읽을 분석" }}</p>
+      <div class="index-list">
+        {% for post in related %}
+        <article class="entry">
+          <p class="entry-kicker">{{ post.data.sector | sectorName }}</p>
+          <h3 class="entry-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+          <span class="entry-date">{{ post.data.date | ymd }}</span>
+          <p class="entry-excerpt">{{ post.data.excerpt }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </aside>
+    {% endif %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": {{ title | dump | safe }},
+      "datePublished": "{{ date | iso }}",
+      "author": { "@type": "Person", "name": "{{ site.author }}", "jobTitle": "{{ site.authorTitle }}" },
+      "publisher": { "@type": "Organization", "name": "표면아래" },
+      "inLanguage": "ko"
+    }
+    </script>
+  </div>
+</article>

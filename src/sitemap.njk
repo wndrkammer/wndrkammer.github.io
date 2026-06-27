@@ -1,0 +1,15 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>{{ site.url }}/</loc></url>
+<url><loc>{{ site.url }}/about/</loc></url>
+{%- for s in sectors %}
+<url><loc>{{ site.url }}/sector/{{ s.slug }}/</loc></url>
+{%- endfor %}
+{%- for post in collections.posts %}
+<url><loc>{{ site.url }}{{ post.url }}</loc><lastmod>{{ post.data.date | iso }}</lastmod></url>
+{%- endfor %}
+</urlset>

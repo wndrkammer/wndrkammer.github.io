@@ -1,0 +1,384 @@
+/* =========================================================
+   표면아래 — 편집국 스타일 (신문지 판)
+   원칙
+   1) 전부 바탕체(serif) 통일, 볼드 없음(굵기 400)
+   2) 제목은 작게, 본문(.prose)만 크게
+   3) 신문지색 바탕 + 미세한 종이 질감
+   ========================================================= */
+
+:root {
+  --paper:      #e9eaec;   /* 살짝 시원한 중립 회색 (노란기 0) */
+  --ink:        #181818;   /* 검정에 가까운 잉크 */
+  --ink-soft:   #4a4b4d;
+  --ink-faint:  #797a7d;
+  --hairline:   #d3d5d8;
+  --hairline-2: #bdc0c4;
+  --accent:     #6f2a20;
+
+  /* 바탕체로 통일 */
+  --serif: "Batang", "바탕", "BatangChe", "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
+  --sans:  var(--serif);   /* 사이트 전체를 바탕체로 */
+
+  --rail:  44rem;
+  --wide:  64rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+
+  /* 신문지색 + 미세한 종이 질감 */
+  background-color: var(--paper);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+}
+img { max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+strong, b { font-weight: 400; }   /* 볼드 사용 안 함 */
+
+.container {
+  width: 100%;
+  max-width: var(--wide);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 2.25rem);
+}
+.rail { max-width: var(--rail); }
+
+.skip-link {
+  position: absolute; left: -999px; top: 0;
+  background: var(--ink); color: var(--paper);
+  padding: 0.6rem 1rem; z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+/* =========================================================
+   헤더
+   ========================================================= */
+.site-header { border-bottom: 1px solid var(--hairline); }
+.header-inner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.4rem;
+}
+.wordmark {
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.wordmark .sub {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin-left: 0.7rem;
+}
+.nav { display: flex; gap: clamp(1rem, 3vw, 1.9rem); }
+.nav a {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.nav a:hover { color: var(--ink); border-color: var(--ink); }
+
+/* 발행 정보 한 줄 */
+.standfirst { border-bottom: 1px solid var(--hairline); }
+.standfirst .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+  padding-block: 0.7rem;
+}
+.standfirst p { margin: 0; font-size: 0.86rem; color: var(--ink-soft); }
+.standfirst .meta { font-size: 0.8rem; letter-spacing: 0.03em; color: var(--ink-faint); }
+
+/* =========================================================
+   인트로 — 첫인상. 입장 한 문장 + 엮은이.
+   ========================================================= */
+.intro {
+  padding-block: clamp(2.8rem, 6vw, 4.4rem);
+  border-bottom: 1px solid var(--hairline);
+}
+.intro-kicker {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin: 0 0 1.2rem;
+}
+.intro-statement {
+  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.6rem);
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 30rem;
+  margin: 0 0 1.6rem;
+}
+.intro-meta {
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+.intro-meta .name { color: var(--ink-soft); }
+
+/* 원칙 — 조용한 신뢰 장치 */
+.principles { list-style: none; padding: 0; margin: 0; max-width: 40rem; }
+.principles li {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  gap: 0 0.6rem;
+  align-items: baseline;
+  padding-block: 1rem;
+  border-top: 1px solid var(--hairline);
+  color: var(--ink-soft);
+}
+.principles li:first-child { border-top: none; padding-top: 0; }
+.principles .n {
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 섹터 목록 — 박스 없이 괘선으로만 */
+.sectors { list-style: none; padding: 0; margin: 0; max-width: 44rem; }
+.sectors li {
+  display: grid;
+  grid-template-columns: minmax(8rem, 10rem) 1fr;
+  gap: 0.2rem 1.4rem;
+  align-items: baseline;
+  padding-block: 1rem;
+  border-top: 1px solid var(--hairline);
+}
+.sectors li:first-child { border-top: none; padding-top: 0; }
+.sector-name { color: var(--ink); }
+.sectors p { margin: 0; color: var(--ink-soft); font-size: 0.94rem; }
+@media (max-width: 560px) {
+  .sectors li { grid-template-columns: 1fr; gap: 0.25rem; }
+}
+
+/* =========================================================
+   리드
+   ========================================================= */
+.lead { padding-block: clamp(2.2rem, 5vw, 3.2rem); border-bottom: 1px solid var(--hairline); }
+.kicker {
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  margin: 0 0 0.8rem;
+}
+.lead-title {
+  font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.6rem);
+  line-height: 1.4;
+  margin: 0 0 1rem;
+  max-width: 34rem;
+}
+.lead-title a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.lead-deck {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  max-width: 34rem;
+  margin: 0 0 1rem;
+}
+.byline { font-size: 0.82rem; letter-spacing: 0.03em; color: var(--ink-faint); margin: 0; }
+
+/* =========================================================
+   섹션
+   ========================================================= */
+.section { padding-block: clamp(2.2rem, 5vw, 3.2rem); }
+.section + .section { border-top: 1px solid var(--hairline); }
+
+.section-label {
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--hairline-2);
+}
+
+/* 인덱스 목록 */
+.index-list { display: flex; flex-direction: column; }
+.entry {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 0.2rem 1.5rem;
+  padding-block: 1.3rem;
+  border-top: 1px solid var(--hairline);
+}
+.entry:first-child { border-top: none; padding-top: 0; }
+.entry-kicker {
+  grid-column: 1 / -1;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  margin: 0 0 0.35rem;
+}
+.entry-title {
+  font-size: 1.08rem;
+  line-height: 1.45;
+  margin: 0;
+}
+.entry-title a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.entry-date {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.entry-excerpt {
+  grid-column: 1 / -1;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  margin: 0.45rem 0 0;
+  max-width: 38rem;
+}
+
+/* 엮은이의 말 */
+.note { max-width: 38rem; }
+.note p { color: var(--ink-soft); margin: 0 0 1rem; }
+.note-sign { font-size: 0.88rem; color: var(--ink-faint); margin: 1.3rem 0 0; }
+.textlink {
+  color: var(--ink);
+  border-bottom: 1px solid var(--hairline-2);
+  padding-bottom: 1px;
+  transition: border-color 0.15s;
+}
+.textlink:hover { border-color: var(--ink); }
+
+/* =========================================================
+   본문 — 여기만 크게
+   ========================================================= */
+.article { padding-block: clamp(2rem, 5vw, 3.2rem); }
+.article-head {
+  max-width: var(--rail);
+  margin: 0 0 clamp(1.8rem, 4vw, 2.4rem);
+  padding-bottom: clamp(1.3rem, 3vw, 1.8rem);
+  border-bottom: 1px solid var(--hairline-2);
+}
+.article-title {
+  font-size: clamp(1.4rem, 1.2rem + 1vw, 1.85rem);
+  line-height: 1.4;
+  margin: 0.55rem 0 0.8rem;
+  max-width: 32rem;
+}
+.article-meta { font-size: 0.82rem; letter-spacing: 0.03em; color: var(--ink-faint); margin: 0; }
+
+.prose {
+  max-width: var(--rail);
+  /* 본문만 크게 */
+  font-size: clamp(1.18rem, 1.06rem + 0.55vw, 1.32rem);
+  line-height: 1.95;
+  color: var(--ink);
+}
+.prose p { margin: 0 0 1.5rem; }
+.prose h2 { font-size: 1.25rem; line-height: 1.4; margin: 2.6rem 0 1rem; }
+.prose h3 { font-size: 1.1rem; margin: 2rem 0 0.7rem; }
+.prose blockquote {
+  margin: 2rem 0;
+  padding-left: 1.3rem;
+  border-left: 2px solid var(--hairline-2);
+  color: var(--ink-soft);
+}
+.prose a { color: var(--accent); border-bottom: 1px solid currentColor; }
+.prose ul, .prose ol { padding-left: 1.2rem; margin: 0 0 1.5rem; }
+.prose li { margin-bottom: 0.5rem; }
+.prose hr { border: none; border-top: 1px solid var(--hairline); margin: 2.5rem 0; }
+
+.back-link {
+  display: inline-block;
+  margin-top: 2.5rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--hairline-2);
+  padding-bottom: 1px;
+}
+.back-link:hover { color: var(--ink); border-color: var(--ink); }
+
+/* =========================================================
+   푸터
+   ========================================================= */
+.site-footer { margin-top: clamp(3rem, 7vw, 5rem); border-top: 1px solid var(--hairline-2); }
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8rem 2rem;
+  padding-block: clamp(1.8rem, 4vw, 2.6rem);
+}
+.footer-brand { font-size: 1.05rem; letter-spacing: 0.05em; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 1.3rem; }
+.footer-links a { font-size: 0.86rem; color: var(--ink-soft); }
+.footer-links a:hover { color: var(--ink); }
+.footer-copy { width: 100%; font-size: 0.8rem; color: var(--ink-faint); margin: 0.4rem 0 0; }
+
+/* =========================================================
+   광고 슬롯
+   - 읽기를 방해하지 않도록 공간을 미리 예약(레이아웃 시프트 0)
+   - 본문과 명확히 분리, 자연스러운 쉼 자리에만 배치
+   ========================================================= */
+.ad {
+  max-width: var(--rail);
+  margin-inline: auto;
+  margin-block: clamp(2.4rem, 6vw, 3.6rem);
+  text-align: center;
+}
+.ad-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 0.55rem;
+}
+.ad-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;            /* 공간 예약 → 본문이 밀리지 않음 */
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  color: var(--ink-faint);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+.ad--inline .ad-box { min-height: 120px; }
+.adsbygoogle { display: block; }
+
+/* =========================================================
+   반응형
+   ========================================================= */
+@media (max-width: 560px) {
+  .header-inner { flex-direction: column; align-items: flex-start; gap: 0.6rem; padding-block: 1.1rem; }
+  .wordmark .sub { display: inline-block; margin-left: 0; margin-top: 0.2rem; }
+  .nav { gap: 1.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+/* =========================================================
+   관련 글
+   ========================================================= */
+.related {
+  max-width: var(--rail);
+  margin-top: clamp(2.4rem, 6vw, 3.6rem);
+  padding-top: clamp(1.6rem, 4vw, 2.2rem);
+  border-top: 1px solid var(--hairline-2);
+}
+.related .section-label { margin-bottom: 1.2rem; }
+.sector-name a:hover { text-decoration: underline; text-underline-offset: 3px; }

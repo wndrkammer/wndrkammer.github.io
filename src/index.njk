@@ -1,0 +1,75 @@
+---
+layout: base.njk
+headTitle: "표면아래 | 산업 분석"
+description: "시장과 언론이 되풀이하는 통념 아래의 구조를 발굴하는 산업 분석. 종목 전망 대신 구조를 보여 주고 판단은 독자에게 넘깁니다."
+---
+<section class="intro">
+  <div class="container">
+    <p class="intro-kicker">표면 아래 구조를 발굴하는 산업 분석</p>
+    <p class="intro-statement">
+      시장과 언론이 되풀이하는 통념에서 출발해, 그것을 낳은 구조를 파내고,
+      그 통념이 어디서 부서지는지를 읽습니다.
+    </p>
+    <p class="intro-meta">
+      <span class="name">남승화</span> · 현직 경제산업부 기자 · 2026년 시작
+    </p>
+  </div>
+</section>
+
+{% set posts = collections.posts %}
+{% if posts.length %}
+{% set lead = posts[0] %}
+<section class="lead">
+  <div class="container">
+    <p class="kicker">오늘의 분석</p>
+    <h2 class="lead-title"><a href="{{ lead.url }}">{{ lead.data.title }}</a></h2>
+    <p class="lead-deck">{{ lead.data.excerpt }}</p>
+    <p class="byline">남승화 · {{ lead.data.sector | sectorName }}</p>
+  </div>
+</section>
+{% endif %}
+
+<section class="section" id="sectors">
+  <div class="container">
+    <p class="section-label">섹터</p>
+    <ul class="sectors">
+      {% for s in sectors %}
+      <li>
+        <span class="sector-name"><a href="/sector/{{ s.slug }}/">{{ s.name }}</a></span>
+        <p>{{ s.desc }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="index">
+  <div class="container">
+    <p class="section-label">분석</p>
+    <div class="index-list">
+      {% for post in posts %}
+      <article class="entry">
+        <p class="entry-kicker">{{ post.data.sector | sectorName }}</p>
+        <h3 class="entry-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+        <span class="entry-date">{{ post.data.date | ymd }}</span>
+        <p class="entry-excerpt">{{ post.data.excerpt }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  {% ad "inline" %}
+</div>
+
+<section class="section" id="principles">
+  <div class="container">
+    <p class="section-label">원칙</p>
+    <ol class="principles">
+      <li><span class="n">01</span><span>합의가 부러지는 곳을 읽습니다. 모두가 동의하는 곳이 가장 부서지기 쉽습니다.</span></li>
+      <li><span class="n">02</span><span>종목의 등락을 예측하지 않습니다. 구조를 보여 주고, 살까 말까의 판단은 독자에게 넘깁니다.</span></li>
+      <li><span class="n">03</span><span>확인할 수 없는 것은 쓰지 않습니다. 빈칸은 확인 필요로 남겨, 사람이 채웁니다.</span></li>
+    </ol>
+  </div>
+</section>

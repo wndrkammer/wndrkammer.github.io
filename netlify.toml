@@ -1,0 +1,8 @@
+# Netlify / Cloudflare Pages 공통 빌드 설정
+# 마크다운을 커밋하면 호스트가 이 명령으로 빌드해 _site 를 배포합니다.
+[build]
+  command = "npm run build"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "22"

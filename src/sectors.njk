@@ -1,0 +1,37 @@
+---
+layout: base.njk
+pagination:
+  data: sectors
+  size: 1
+  alias: sector
+permalink: "/sector/{{ sector.slug }}/"
+eleventyComputed:
+  headTitle: "{{ sector.name }} | 표면아래"
+  description: "{{ sector.desc }}"
+---
+<section class="article">
+  <div class="container">
+    <header class="article-head">
+      <p class="kicker">섹터</p>
+      <h1 class="article-title">{{ sector.name }}</h1>
+      <p class="article-meta">{{ sector.desc }}</p>
+    </header>
+
+    {% set posts = collections.posts | bySector(sector.slug) %}
+    {% if posts.length %}
+    <div class="index-list">
+      {% for post in posts %}
+      <article class="entry">
+        <p class="entry-kicker">{{ post.data.date | ymd }}</p>
+        <h3 class="entry-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+        <p class="entry-excerpt">{{ post.data.excerpt }}</p>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="lead-deck">아직 이 섹터의 분석이 없습니다.</p>
+    {% endif %}
+
+    <a class="back-link" href="/#sectors">← 섹터 전체</a>
+  </div>
+</section>

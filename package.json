@@ -1,0 +1,13 @@
+{
+  "name": "pyomyeon-arae",
+  "version": "1.0.0",
+  "private": true,
+  "description": "표면아래 — 산업 분석 저널 (11ty static site)",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}
