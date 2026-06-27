@@ -83,8 +83,8 @@ strong, b { font-weight: 400; }   /* 볼드 사용 안 함 */
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   color: var(--ink-soft);
-  margin-left: 0.7rem;
-  padding-left: 0.7rem;
+  margin-left: 1rem;
+  padding-left: 1rem;
   border-left: 1px solid var(--hairline-2);
 }
 .nav { display: flex; gap: clamp(1.1rem, 3vw, 2rem); }
