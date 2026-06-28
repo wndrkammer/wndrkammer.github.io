@@ -12,8 +12,8 @@ module.exports = [
   },
   {
     slug: "robot-ai",
-    name: "로봇과 피지컬 AI",
-    desc: "휴머노이드와 자율주행, 물리 세계로 들어온 AI의 권력 지도.",
+    name: "LLM과 피지컬 AI",
+    desc: "생성형 AI가 화면 밖으로 나와 로봇과 자율주행을 움직이는 권력 지도.",
   },
   {
     slug: "bio-health",
