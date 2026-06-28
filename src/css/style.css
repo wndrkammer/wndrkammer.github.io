@@ -206,6 +206,20 @@ strong, b { font-weight: 400; }   /* 볼드 사용 안 함 */
 }
 .byline { font-size: 0.82rem; letter-spacing: 0.03em; color: var(--ink-faint); margin: 0; }
 
+/* 리드 — 사진 있는 글이면 제목 왼쪽에 조금 큰 정사각 썸네일 */
+.lead-inner { display: flex; align-items: flex-start; gap: clamp(1rem, 3.5vw, 1.8rem); }
+.lead-main { flex: 1 1 auto; min-width: 0; }
+.lead-thumb {
+  flex: 0 0 auto;
+  width: clamp(128px, 30vw, 188px);
+  aspect-ratio: 16 / 9;     /* 정사각 대신 살짝 얇은 가로형 */
+  margin-top: 1cm;          /* 제목 라인보다 살짝 내려 위쪽 쏠림 완화 */
+  overflow: hidden;
+  background: var(--hairline);
+  border: 1px solid var(--hairline-2);
+}
+.lead-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
 /* =========================================================
    섹션
    ========================================================= */
@@ -224,14 +238,32 @@ strong, b { font-weight: 400; }   /* 볼드 사용 안 함 */
 /* 인덱스 목록 */
 .index-list { display: flex; flex-direction: column; }
 .entry {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: baseline;
-  gap: 0.2rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(0.85rem, 3vw, 1.2rem);
   padding-block: 1.3rem;
   border-top: 1px solid var(--hairline);
 }
 .entry:first-child { border-top: none; padding-top: 0; }
+/* 사진 있는 글에만 붙는 작은 정사각 썸네일 */
+.entry-thumb {
+  flex: 0 0 auto;
+  width: clamp(84px, 20vw, 116px);
+  aspect-ratio: 16 / 9;     /* 정사각 대신 살짝 얇은 가로형 */
+  margin-top: 1.75rem;      /* 섹터 라벨 줄을 지나 제목·미리보기 글 옆으로 내림 */
+  overflow: hidden;
+  background: var(--hairline);
+  border: 1px solid var(--hairline-2);
+}
+.entry-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.entry-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 0.2rem 1.5rem;
+}
 .entry-kicker {
   grid-column: 1 / -1;
   font-size: 0.72rem;
@@ -288,6 +320,24 @@ strong, b { font-weight: 400; }   /* 볼드 사용 안 함 */
   max-width: 32rem;
 }
 .article-meta { font-size: 0.82rem; letter-spacing: 0.03em; color: var(--ink-faint); margin: 0; }
+
+/* 기사 대표 이미지 — 제목 아래, 본문 위 */
+.article-figure {
+  max-width: var(--rail);
+  margin: clamp(1.4rem, 4vw, 2.2rem) 0;   /* 본문 단락 사이에 들어가므로 위아래 여백 */
+}
+.article-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--hairline-2);
+}
+.article-figure figcaption {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  margin-top: 0.6rem;
+}
 
 .prose {
   max-width: var(--rail);

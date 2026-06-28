@@ -9,8 +9,10 @@ layout: base.njk
       <p class="article-meta">{{ site.author }} · {{ site.authorTitle }} · {{ date | ymd }}</p>
     </header>
 
+    {%- set figureHtml %}{% if image %}<figure class="article-figure"><img src="{{ image }}" alt="{{ imageAlt or title }}" loading="lazy">{% if imageCaption %}<figcaption>{{ imageCaption }}</figcaption>{% endif %}</figure>{% endif %}{% endset -%}
+
     <div class="prose">
-      {{ content | safe }}
+      {{ content | insertAfterParagraph(imageAfterParagraph or 2, figureHtml) | safe }}
 
       {% ad %}
 
@@ -25,10 +27,17 @@ layout: base.njk
       <div class="index-list">
         {% for post in related %}
         <article class="entry">
-          <p class="entry-kicker">{{ post.data.sector | sectorName }}</p>
-          <h3 class="entry-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-          <span class="entry-date">{{ post.data.date | ymd }}</span>
-          <p class="entry-excerpt">{{ post.data.excerpt }}</p>
+          {% if post.data.image %}
+          <a class="entry-thumb" href="{{ post.url }}" tabindex="-1" aria-hidden="true">
+            <img src="{{ post.data.image }}" alt="" loading="lazy">
+          </a>
+          {% endif %}
+          <div class="entry-main">
+            <p class="entry-kicker">{{ post.data.sector | sectorName }}</p>
+            <h3 class="entry-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+            <span class="entry-date">{{ post.data.date | ymd }}</span>
+            <p class="entry-excerpt">{{ post.data.excerpt }}</p>
+          </div>
         </article>
         {% endfor %}
       </div>

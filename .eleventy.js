@@ -3,6 +3,7 @@ const sectors = require("./src/_data/sectors.js");
 module.exports = function (eleventyConfig) {
   // 정적 자산
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
+  eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
 
   // 날짜 필터 (UTC 기준으로 고정해 하루 밀림 방지)
   const pad = (n) => String(n).padStart(2, "0");
@@ -15,6 +16,21 @@ module.exports = function (eleventyConfig) {
   // 섹터 슬러그 → 이름
   const sectorMap = Object.fromEntries(sectors.map((s) => [s.slug, s]));
   eleventyConfig.addFilter("sectorName", (slug) => (sectorMap[slug] || {}).name || slug);
+
+  // 본문 HTML에서 n번째 문단(</p>) 뒤에 도표 등 조각을 끼워 넣음
+  eleventyConfig.addFilter("insertAfterParagraph", (html, n, snippet) => {
+    const snip = snippet ? String(snippet) : "";
+    if (!snip.trim()) return html;
+    const target = Number(n) || 1;
+    let count = 0;
+    let inserted = false;
+    const out = String(html).replace(/<\/p>/g, (m) => {
+      count++;
+      if (!inserted && count === target) { inserted = true; return m + snip; }
+      return m;
+    });
+    return inserted ? out : out + snip;
+  });
 
   // 목록 보조 필터
   eleventyConfig.addFilter("bySector", (posts, slug) => (posts || []).filter((p) => p.data.sector === slug));

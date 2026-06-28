@@ -20,11 +20,18 @@ description: "시장과 언론이 되풀이하는 통념 아래의 구조를 발
 {% if posts.length %}
 {% set lead = posts[0] %}
 <section class="lead">
-  <div class="container">
-    <p class="kicker">오늘의 분석</p>
-    <h2 class="lead-title"><a href="{{ lead.url }}">{{ lead.data.title }}</a></h2>
-    <p class="lead-deck">{{ lead.data.excerpt }}</p>
-    <p class="byline">남승화 · {{ lead.data.sector | sectorName }}</p>
+  <div class="container lead-inner">
+    {% if lead.data.image %}
+    <a class="lead-thumb" href="{{ lead.url }}" tabindex="-1" aria-hidden="true">
+      <img src="{{ lead.data.image }}" alt="" loading="lazy">
+    </a>
+    {% endif %}
+    <div class="lead-main">
+      <p class="kicker">오늘의 분석</p>
+      <h2 class="lead-title"><a href="{{ lead.url }}">{{ lead.data.title }}</a></h2>
+      <p class="lead-deck">{{ lead.data.excerpt }}</p>
+      <p class="byline">남승화 · {{ lead.data.sector | sectorName }}</p>
+    </div>
   </div>
 </section>
 {% endif %}
@@ -49,10 +56,17 @@ description: "시장과 언론이 되풀이하는 통념 아래의 구조를 발
     <div class="index-list">
       {% for post in posts %}
       <article class="entry">
-        <p class="entry-kicker">{{ post.data.sector | sectorName }}</p>
-        <h3 class="entry-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-        <span class="entry-date">{{ post.data.date | ymd }}</span>
-        <p class="entry-excerpt">{{ post.data.excerpt }}</p>
+        {% if post.data.image %}
+        <a class="entry-thumb" href="{{ post.url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ post.data.image }}" alt="" loading="lazy">
+        </a>
+        {% endif %}
+        <div class="entry-main">
+          <p class="entry-kicker">{{ post.data.sector | sectorName }}</p>
+          <h3 class="entry-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+          <span class="entry-date">{{ post.data.date | ymd }}</span>
+          <p class="entry-excerpt">{{ post.data.excerpt }}</p>
+        </div>
       </article>
       {% endfor %}
     </div>
