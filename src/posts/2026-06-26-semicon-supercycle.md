@@ -1,7 +1,7 @@
 ---
 title: "모두가 슈퍼사이클을 말할 때, 가격 결정권은 어디로 옮겨갔나"
 date: 2026-06-26
-sector: semicon-tech
+sector: industry
 slug: semicon-supercycle-price-power
 excerpt: "만드는 자가 이긴다는 합의가, 어떤 계약 조항 위에서 느슨해지는지를 폈습니다."
 ---

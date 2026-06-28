@@ -1,7 +1,7 @@
 ---
 title: "미·이란, 종전 양해각서는 바닷물에 쉽게 젖었다 — 호르무즈 휴전의 한계"
 date: 2026-06-27
-sector: politics-society
+sector: policy
 slug: hormuz-enforcement-gap
 excerpt: "미국·이란 MOU 뒤에도 호르무즈 재충돌은 이어졌다. 빠진 것은 해협 조항이 아니라, 바다에서 위반을 판정하고 집행할 시행세칙이었다."
 image: /assets/posts/hormuz-enforcement-gap.png

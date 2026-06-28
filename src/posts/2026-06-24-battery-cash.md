@@ -1,7 +1,7 @@
 ---
 title: "출하량은 늘었는데 왜 현금은 줄었나"
 date: 2026-06-24
-sector: battery-energy
+sector: industry
 slug: battery-cash-divergence
 excerpt: "한 몸이어야 할 외형 성장과 현금 흔적이 따로 노는 자리를 따라가 봤습니다."
 ---

@@ -1,7 +1,7 @@
 ---
 title: "휴머노이드 상용화라는 통념, 어디서 현실과 갈라지나"
 date: 2026-06-21
-sector: robot-ai
+sector: industry
 slug: humanoid-robot-reality-gap
 excerpt: "곧 공장에 사람형 로봇이 들어선다는 합의가, 어떤 단위 경제 위에서 흔들리는지를 봤습니다."
 ---

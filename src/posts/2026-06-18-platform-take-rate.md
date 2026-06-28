@@ -1,7 +1,7 @@
 ---
 title: "거래액 성장이 멈춘 자리에서, 수수료 구조는 어떻게 작동하나"
 date: 2026-06-18
-sector: platform-consumer
+sector: industry
 slug: platform-take-rate-structure
 excerpt: "점유율이라는 표면 아래에서 실제로 돈을 만드는 조항을 들여다봤습니다."
 ---
