@@ -1,4 +1,5 @@
 ---
+draft: false
 title: "출하량은 늘었는데 왜 현금은 줄었나"
 date: 2026-06-24
 sector: industry

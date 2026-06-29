@@ -1,4 +1,5 @@
 ---
+draft: false
 title: "거래액 성장이 멈춘 자리에서, 수수료 구조는 어떻게 작동하나"
 date: 2026-06-18
 sector: industry

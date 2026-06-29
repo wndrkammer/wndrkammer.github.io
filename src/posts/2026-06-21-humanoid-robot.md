@@ -1,4 +1,5 @@
 ---
+draft: false
 title: "휴머노이드 상용화라는 통념, 어디서 현실과 갈라지나"
 date: 2026-06-21
 sector: industry

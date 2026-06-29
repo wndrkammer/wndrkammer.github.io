@@ -1,4 +1,5 @@
 ---
+draft: false
 title: "모두가 슈퍼사이클을 말할 때, 가격 결정권은 어디로 옮겨갔나"
 date: 2026-06-26
 sector: industry
