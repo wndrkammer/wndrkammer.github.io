@@ -1,0 +1,63 @@
+name: 예약 발행
+
+on:
+  schedule:
+    - cron: "0 14 * * *"   # 매일 23:00 KST (= 14:00 UTC)
+  workflow_dispatch:        # 버튼으로 수동 실행도 가능
+
+permissions:
+  contents: write   # 자동 커밋·푸시
+  pages: write      # GitHub Pages 배포
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 예약일 지난 초안 공개
+        id: flip
+        run: |
+          node scripts/publish-due.js
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 변경 커밋·푸시
+        if: steps.flip.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "자동 발행: 예약 글 공개"
+          git push
+
+      - uses: actions/setup-node@v4
+        if: steps.flip.outputs.changed == 'true'
+        with:
+          node-version: 22
+
+      - run: npm ci
+        if: steps.flip.outputs.changed == 'true'
+
+      - run: npm run build
+        if: steps.flip.outputs.changed == 'true'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.flip.outputs.changed == 'true'
+        with:
+          path: _site
+
+      - id: deployment
+        if: steps.flip.outputs.changed == 'true'
+        uses: actions/deploy-pages@v4
